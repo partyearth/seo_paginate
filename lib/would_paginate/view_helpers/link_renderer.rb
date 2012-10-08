@@ -4,21 +4,48 @@ module WouldPaginate
     # = URL generation for paginating
     # This class customize routes for paginate urls
     # and should be used for customizing pagination.
-    class LinkRenderer < WillPaginate::ActionView::LinkRenderer
+    class LinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
       protected
 
-      def url(page)
-        @base_url_params ||= begin
-          url_params = merge_get_params(default_url_params)
-          merge_optional_params(url_params)
+      def windowed_page_numbers
+        window_from = current_page/10*10
+        window_to = if total_pages > window_from + 10
+                      window_from + 10 - 1
+                    else
+                      total_pages - 1
+                    end
+        window_from = 1 if window_from.zero?
+
+        window = ( window_from .. window_to ).to_a
+
+        last_hub_pages = (window_to + 1).step(total_pages, 10).to_a
+        first_hub_pages = (window_from - 10).step(10, -10).to_a.reverse
+
+        if current_page == 1 and total_pages == 1
+          [1]
+        elsif current_page < 10
+          window + last_hub_pages.first(6) + [total_pages]
+        else
+
+          first_hub_size = last_hub_pages.size >= 3 ? 3 : 7 - last_hub_pages.size
+          last_hub_size = first_hub_pages.size >= 3 ? 3 : 6 - first_hub_pages.size
+
+          result = [1] + first_hub_pages.last(first_hub_size) + window + last_hub_pages.first(last_hub_size)
+
+          if result.last == total_pages
+            result
+          else
+            result + [total_pages]
+          end
         end
-
-        url_params = @base_url_params.dup
-
-        # TODO (AK) need to be changed, fast fix:
-        "/#{@base_url_params[:city_id]}/festivals/all-annual/#{ "page-#{page}/" unless page==1 }"
-        #@template.entertainers_directory_page_path(page)
       end
+
+=begin NOTE(AK): not used
+      def hub_page?
+        current_page == 1 || (current_page % 10).zero?
+      end
+=end
     end
+
   end
 end
