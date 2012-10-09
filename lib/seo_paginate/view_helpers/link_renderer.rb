@@ -4,7 +4,20 @@ module SeoPaginate
 
     # Customizes routes for paginate urls.
     class LinkRenderer < WillPaginate::ActionView::LinkRenderer#WillPaginate::ViewHelpers::LinkRendererBase
+
       protected
+
+      def page_number(page)
+        unless page == current_page
+          if hub_page?
+            link(page, page, :rel => rel_value(page))
+          else
+            tag(:em, page)
+          end
+        else
+          tag(:em, page, class: 'current')
+        end
+      end
 
       def windowed_page_numbers
         window_from = current_page / 10 * 10
@@ -39,10 +52,9 @@ module SeoPaginate
         end
       end
 
-    # NOTE(AK): not used
-    #  def hub_page?
-    #    current_page == 1 || (current_page % 10).zero?
-    #  end
+      def hub_page?
+        current_page == 1 || (current_page % 10).zero?
+      end
     end
   end
 end

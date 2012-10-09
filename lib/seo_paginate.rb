@@ -10,6 +10,6 @@ require 'seo_paginate/view_helpers/link_renderer'
 
 module SeoPaginate
   def seo_paginate collection, options = {}
-    will_paginate collection, options.merge(:link_renderer => ::SeoPaginate::ViewHelpers::LinkRenderer)
+    will_paginate collection, options.merge(renderer: ::SeoPaginate::ViewHelpers::LinkRenderer)
   end
 end
