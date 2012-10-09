@@ -1,8 +1,8 @@
-module WouldPaginate
+module SeoPaginate
   class Railtie < Rails::Railtie
-    initializer "would_paginate" do |app|
+    initializer "seo_paginate" do |app|
       ActiveSupport.on_load :action_view do
-        include WouldPaginate
+        include SeoPaginate
       end
     end
   end
