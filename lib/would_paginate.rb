@@ -1,3 +1,4 @@
+require 'action_view'
 require 'will_paginate'
 require 'will_paginate/view_helpers/action_view'
 if defined?(Rails::Railtie)
