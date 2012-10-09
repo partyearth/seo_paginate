@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe WouldPaginate::ViewHelpers::LinkRenderer do
+describe SeoPaginate::ViewHelpers::LinkRenderer do
 
   shared_examples_for "will paginate" do
 
