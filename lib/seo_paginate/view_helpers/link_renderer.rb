@@ -7,15 +7,24 @@ module SeoPaginate
 
       protected
 
+      def previous_or_next_page(page, text, classname)
+        if page
+          #link(text, page, :class => classname)
+          tag(:span, text, :class => classname + ' GooglizedLink fake_link', 'data-link' => url(page))
+        else
+          tag(:span, text, :class => classname + ' disabled')
+        end
+      end
+
       def page_number(page)
-        unless page == current_page
-          if hub_page?
+        if page == current_page
+          tag(:em, page, class: 'current')
+        else
+          if hub_page? or (page == 1 and current_page != 1) or ( page == (current_page / 10 * 10 + 10 ))
             link(page, page, :rel => rel_value(page))
           else
-            tag(:em, page)
+            tag(:em, page, :class => "GooglizedLink fake_link", 'data-link' => url(page) )
           end
-        else
-          tag(:em, page, class: 'current')
         end
       end
 

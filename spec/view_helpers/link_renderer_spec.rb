@@ -35,10 +35,18 @@ describe SeoPaginate::ViewHelpers::LinkRenderer do
       let(:total_pages){ 182 }
       before { prepare( { page: page, total_pages: total_pages } ) }
 
+
       context "page 1" do
         let(:page){ 1 }
         it('displays six hub pages after window links') do
           should show_pages 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 182
+        end
+
+        describe('#page_number') do
+          context("current page") do
+            let(:rendered_page) { 1 }
+            it('renders page number as tag')
+          end
         end
       end
 
@@ -88,6 +96,17 @@ describe SeoPaginate::ViewHelpers::LinkRenderer do
         it('displays 6 hub pages after window links') do
           should show_pages 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 182
         end
+
+        describe('#page_number') do
+          context("current page") do
+            let(:rendered_page) { 10 }
+            it('renders page number as link') do
+              subject.should_receive(:link).once.and_return("the link")
+              subject.send :page_number, rendered_page
+            end
+          end
+        end
+
       end
 
       context "page 15" do
