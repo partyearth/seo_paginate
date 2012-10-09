@@ -1,5 +1,5 @@
 require 'will_paginate'
-require 'will_paginate/view_helpers/link_renderer'
+require 'will_paginate/view_helpers/action_view'
 if defined?(Rails::Railtie)
   require 'would_paginate/railtie'
 elsif defined?(Rails::Initializer)

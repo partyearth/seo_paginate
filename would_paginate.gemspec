@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = 'would_paginate'
-  s.version = WouldPaginate::VERSION::STRING
+  s.version = '0.0.1'
 
   s.date = '2012-09-21'
   s.summary = 'Applies hard logic to pagination making your seo much better.'

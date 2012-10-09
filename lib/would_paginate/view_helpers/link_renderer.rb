@@ -3,7 +3,7 @@ module WouldPaginate
   module ViewHelpers
 
     # Customizes routes for paginate urls.
-    class LinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
+    class LinkRenderer < WillPaginate::ActionView::LinkRenderer#WillPaginate::ViewHelpers::LinkRendererBase
       protected
 
       def windowed_page_numbers
