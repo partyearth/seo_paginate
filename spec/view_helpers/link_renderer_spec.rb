@@ -37,34 +37,44 @@ describe SeoPaginate::ViewHelpers::LinkRenderer do
 
       context "page 1" do
         let(:page){ 1 }
-        it { should show_pages 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 182 }
+        it('displays six hub pages after window links') do
+          should show_pages 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 182
+        end
       end
 
       context "page 10" do
         let(:page) { 10 }
-        it { should show_pages 1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 30, 40, 50, 60, 70, 182 }
+        it('displays six hub pages after window links') do
+          should show_pages 1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 30, 40, 50, 60, 70, 182
+        end
       end
 
       context "page 30" do
         let(:page) { 30 }
-        it { should show_pages 1, 10, 20, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 50, 60, 70, 182 }
+        it('displays 2 hub pages before window and 4 hub pages - after') do
+          should show_pages 1, 10, 20, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 50, 60, 70, 182
+        end
       end
 
       context "page 120" do
         let(:page){ 120 }
-        it { should show_pages 1, 90, 100, 110, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 140, 150, 182 }
+        it('displays 3 hub pages before window and 3 hub pages - after') do
+          should show_pages 1, 90, 100, 110, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 140, 150, 182
+        end
       end
 
       context "page 180" do
         let(:page) { 180 }
-        it { should show_pages 1, 120, 130, 140, 150, 160, 170, 180, 181, 182 }
+        it('displays 6 hub pages before window links') do
+          should show_pages 1, 120, 130, 140, 150, 160, 170, 180, 181, 182
+        end
       end
 
       context "ten pages total" do
         let(:total_pages){ 10 }
         context "page 1" do
           let(:page){ 1 }
-          it { should show_pages 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }
+          it('displays only window') { should show_pages 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }
         end
       end
     end
@@ -75,27 +85,37 @@ describe SeoPaginate::ViewHelpers::LinkRenderer do
 
       context "page 3" do
         let(:page){ 3 }
-        it{ should show_pages 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 182 }
+        it('displays 6 hub pages after window links') do
+          should show_pages 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 182
+        end
       end
 
       context "page 15" do
         let(:page) { 15 }
-        it{ should show_pages 1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 30, 40, 50, 60, 70, 182 }
+        it('displays 6 hub pages after window links') do
+          should show_pages 1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 30, 40, 50, 60, 70, 182
+        end
       end
 
       context "page 37" do
         let(:page) { 37 }
-        it{ should show_pages 1, 10, 20, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 50, 60, 70, 182 }
+        it('displays 2 hub pages before window and 4 - after') do
+          should show_pages 1, 10, 20, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 50, 60, 70, 182
+        end
       end
 
       context "page 128" do
         let(:page){ 128 }
-        it{ should show_pages 1, 90, 100, 110, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 140, 150, 182 }
+        it('displays 3 hub pages before window and 3 - after') do
+          should show_pages 1, 90, 100, 110, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 140, 150, 182
+        end
       end
 
       context "page 181" do
         let(:page) { 181 }
-        it{ should show_pages 1, 120, 130, 140, 150, 160, 170, 180, 181, 182 }
+        it('displays 6 hub pages before window links') do
+          should show_pages 1, 120, 130, 140, 150, 160, 170, 180, 181, 182
+        end
       end
     end
   end
