@@ -1,14 +1,13 @@
 # -*- encoding : utf-8 -*-
 module WouldPaginate
   module ViewHelpers
-    # = URL generation for paginating
-    # This class customize routes for paginate urls
-    # and should be used for customizing pagination.
+
+    # Customizes routes for paginate urls.
     class LinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
       protected
 
       def windowed_page_numbers
-        window_from = current_page/10*10
+        window_from = current_page / 10 * 10
         window_to = if total_pages > window_from + 10
                       window_from + 10 - 1
                     else
@@ -40,12 +39,10 @@ module WouldPaginate
         end
       end
 
-=begin NOTE(AK): not used
-      def hub_page?
-        current_page == 1 || (current_page % 10).zero?
-      end
-=end
+    # NOTE(AK): not used
+    #  def hub_page?
+    #    current_page == 1 || (current_page % 10).zero?
+    #  end
     end
-
   end
 end

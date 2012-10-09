@@ -1,17 +1,18 @@
 # encoding: utf-8
-require 'rbconfig'
-require File.expand_path('../lib/would_paginate/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name = 'would_paginate'
   s.version = WouldPaginate::VERSION::STRING
 
   s.date = '2012-09-21'
-  s.summary = 'A pagination solution'
+  s.summary = 'Applies hard logic to pagination making your seo much better.'
   s.description = 'Search optimized pagination gem'
   s.authors = [ 'Daniel Milner', 'Aleksandr Kozhukhovskiy' ]
   s.email = 'akozhukhovskiy@partyearth.com'
-  s.files = Dir[ '{bin,lib,test,spec}/**/*', 'README*', 'LICENSE*']
+  s.files = `git ls-files`.split("\n")
+  s.require_paths = ["lib"]
+  s.add_runtime_dependency(%q<will_paginate>, [">= 3.0.3"])
+  s.add_development_dependency(%q<bundler>, ["~> 1.0.21"])
 
   # include only files in version control
   git_dir = File.expand_path('../.git', __FILE__)
