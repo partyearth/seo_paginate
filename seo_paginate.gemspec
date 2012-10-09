@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 Gem::Specification.new do |s|
-  s.name = 'would_paginate'
+  s.name = 'seo_paginate'
   s.version = '0.0.1'
 
   s.date = '2012-09-21'

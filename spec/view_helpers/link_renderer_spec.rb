@@ -31,6 +31,7 @@ describe SeoPaginate::ViewHelpers::LinkRenderer do
 
   describe "visible page numbers" do
     context "hub pages" do
+
       let(:total_pages){ 182 }
       before { prepare( { page: page, total_pages: total_pages } ) }
 
@@ -57,6 +58,14 @@ describe SeoPaginate::ViewHelpers::LinkRenderer do
       context "page 180" do
         let(:page) { 180 }
         it { should show_pages 1, 120, 130, 140, 150, 160, 170, 180, 181, 182 }
+      end
+
+      context "ten pages total" do
+        let(:total_pages){ 10 }
+        context "page 1" do
+          let(:page){ 1 }
+          it { should show_pages 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }
+        end
       end
     end
 

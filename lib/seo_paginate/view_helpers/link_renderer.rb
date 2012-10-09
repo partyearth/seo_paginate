@@ -20,22 +20,22 @@ module SeoPaginate
         last_hub_pages = (window_to + 1).step(total_pages, 10).to_a
         first_hub_pages = (window_from - 10).step(10, -10).to_a.reverse
 
-        if current_page == 1 and total_pages == 1
+        result = if current_page == 1 and total_pages == 1
           [1]
         elsif current_page < 10
-          window + last_hub_pages.first(6) + [total_pages]
+          window + last_hub_pages.first(6)
         else
 
           first_hub_size = last_hub_pages.size >= 3 ? 3 : 7 - last_hub_pages.size
           last_hub_size = first_hub_pages.size >= 3 ? 3 : 6 - first_hub_pages.size
 
-          result = [1] + first_hub_pages.last(first_hub_size) + window + last_hub_pages.first(last_hub_size)
+          [1] + first_hub_pages.last(first_hub_size) + window + last_hub_pages.first(last_hub_size)
+        end
 
-          if result.last == total_pages
-            result
-          else
-            result + [total_pages]
-          end
+        if result.last == total_pages
+          result
+        else
+          result + [total_pages]
         end
       end
 
