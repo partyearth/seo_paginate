@@ -28,6 +28,23 @@ module SeoPaginate
         end
       end
 
+      # Insert gaps when it is required
+      #
+      # @param <Array> page_numbers array of page numbers
+      #
+      # @return <Array> array of pages with inserted gaps
+      def gapify page_numbers
+        page_numbers.inject([]) do |arr, v|
+          if arr.last.nil?
+            [v]
+          elsif arr.last + 1 == v
+            arr + [v]
+          else
+            arr + [:gap] + [v]
+          end
+        end
+      end
+
       def windowed_page_numbers
         window_from = current_page / 10 * 10
         window_to = if total_pages > window_from + 10
@@ -55,9 +72,9 @@ module SeoPaginate
         end
 
         if result.last == total_pages
-          result
+          gapify result
         else
-          result + [total_pages]
+          gapify result + [total_pages]
         end
       end
 

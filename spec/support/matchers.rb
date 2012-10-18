@@ -8,7 +8,7 @@ RSpec::Matchers.define :show_pages do |*expected|
   end
 
   failure_message_for_should do |paginator|
-    "[#{paginator.send(:windowed_page_numbers).join(', ')}] - expected\n[#{expected.join(', ')}] - shown"
+    "[#{paginator.send(:windowed_page_numbers).join(', ')}] - shown\n[#{expected.join(', ')}] - expected"
   end
 
   diffable
